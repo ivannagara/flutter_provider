@@ -34,11 +34,13 @@ class ProfilePage extends StatelessWidget {
             ),
             const Text('12 Years Old'),
             ElevatedButton(
-              onPressed: () {
-                Provider.of<AuthNotifier>(context, listen: false)
-                    .addNameWith1();
-              },
+              onPressed: Provider.of<AuthNotifier>(context, listen: false)
+                  .addNameWith1,
               child: const Text('Add 1'),
+            ),
+            ElevatedButton(
+              onPressed: context.read<AuthNotifier>().logout,
+              child: const Text('Logout'),
             ),
           ],
         ),

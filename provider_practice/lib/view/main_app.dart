@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_practice/notifier/auth_notifier.dart';
+import 'package:provider_practice/view/login_page.dart';
 import 'package:provider_practice/view/profile_page.dart';
 
 class MainApp extends StatelessWidget {
@@ -6,14 +9,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Provider Application',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const ProfilePage(),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return Consumer<AuthNotifier>(
+      builder: (context, notifier, child) {
+        return MaterialApp(
+          title: 'Provider Application',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home:
+              notifier.isUserLoggedIn ? const ProfilePage() : const LoginPage(),
+          // home: const ProfilePage(),
+          // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        );
+      },
     );
   }
 }
