@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_practice/notifier/auth_notifier.dart';
+import 'package:provider_practice/view/navigation_page.dart';
 import 'package:provider_practice/view/login_page.dart';
-import 'package:provider_practice/view/profile_page.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -17,8 +17,7 @@ class MainApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home:
-              notifier.isUserLoggedIn ? const ProfilePage() : const LoginPage(),
+          home: notifier.isUserLoggedIn ? NavigationPage() : const LoginPage(),
           // home: const ProfilePage(),
           // home: const MyHomePage(title: 'Flutter Demo Home Page'),
         );

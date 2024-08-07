@@ -8,41 +8,42 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: [
-            Selector<AuthNotifier, String?>(
-              selector: (context, authNotifier) => authNotifier.user?.name,
-              builder: (context, name, child) {
-                return Text(name ?? '');
-              },
-            ),
-            Selector<AuthNotifier, String?>(
-              selector: (context, authNotifier) => authNotifier.user?.id,
-              builder: (context, id, child) {
-                return Text(id ?? '');
-              },
-            ),
-            Selector<AuthNotifier, String?>(
-              selector: (context, authNotifier) =>
-                  authNotifier.user?.description,
-              builder: (context, description, child) {
-                return Text(description ?? '');
-              },
-            ),
-            const Text('12 Years Old'),
-            ElevatedButton(
-              onPressed: Provider.of<AuthNotifier>(context, listen: false)
-                  .addNameWith1,
-              child: const Text('Add 1'),
-            ),
-            ElevatedButton(
-              onPressed: context.read<AuthNotifier>().logout,
-              child: const Text('Logout'),
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              Selector<AuthNotifier, String?>(
+                selector: (context, authNotifier) => authNotifier.user?.name,
+                builder: (context, name, child) {
+                  return Text(name ?? '');
+                },
+              ),
+              Selector<AuthNotifier, String?>(
+                selector: (context, authNotifier) => authNotifier.user?.id,
+                builder: (context, id, child) {
+                  return Text(id ?? '');
+                },
+              ),
+              Selector<AuthNotifier, String?>(
+                selector: (context, authNotifier) =>
+                    authNotifier.user?.description,
+                builder: (context, description, child) {
+                  return Text(description ?? '');
+                },
+              ),
+              const Text('12 Years Old'),
+              ElevatedButton(
+                onPressed: Provider.of<AuthNotifier>(context, listen: false)
+                    .addNameWith1,
+                child: const Text('Add 1'),
+              ),
+              ElevatedButton(
+                onPressed: context.read<AuthNotifier>().logout,
+                child: const Text('Logout'),
+              ),
+            ],
+          ),
         ),
       ),
     );
